@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SettleIn helps international students move to a new city with verified housing guidance, administrative checklists, local essentials, and culture tips in one personalized plan." />
+  <title>SettleIn — Move abroad. Feel at home faster.</title>
+  <style>
+    :root {
+      --ink: #102c34;
+      --ink-soft: #4d646a;
+      --green-900: #086449;
+      --green-800: #087957;
+      --green-700: #119463;
+      --green-600: #24a967;
+      --green-500: #35b96f;
+      --mint-200: #ccefdc;
+      --mint-100: #e9f8ef;
+      --mint-50: #f4fbf7;
+      --cream: #fbfaf5;
+      --white: #ffffff;
+      --sand: #f0eadc;
+      --coral: #ff8d6b;
+      --yellow: #ffd875;
+      --line: #dce8e2;
+      --shadow-sm: 0 10px 30px rgba(16, 44, 52, 0.08);
+      --shadow-lg: 0 28px 80px rgba(16, 44, 52, 0.15);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+      --max-width: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    img, svg { display: block; max-width: 100%; }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green-800);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: var(--green-600);
+      border-radius: 99px;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 44px;
+    }
+
+    .section-heading h2 {
+      margin: 12px 0 14px;
+      font-size: clamp(2rem, 4.2vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 1.08rem;
+      max-width: 640px;
+    }
+
+    .button {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      border-radius: 999px;
+      padding: 0 22px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+    .button:focus-visible { outline: 3px solid rgba(255, 216, 117, 0.9); outline-offset: 3px; }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--green-800);
+      box-shadow: 0 12px 26px rgba(8, 121, 87, 0.24);
+    }
+
+    .button-primary:hover { background: var(--green-900); }
+
+    .button-light {
+      color: var(--green-900);
+      background: var(--white);
+      box-shadow: 0 12px 28px rgba(16, 44, 52, 0.12);
+    }
+
+    .button-ghost {
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid rgba(16, 44, 52, 0.12);
+    }
+
+    .button svg { width: 17px; height: 17px; }
+
+    /* Navigation */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251, 250, 245, 0.86);
+      border-bottom: 1px solid rgba(16, 44, 52, 0.07);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px 13px 17px 17px;
+      background: var(--green-700);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 9px 22px rgba(17, 148, 99, 0.22);
+    }
+
+    .brand-mark svg { width: 23px; height: 23px; }
+    .brand span:last-child { color: var(--green-800); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+      font-weight: 700;
+      transition: color 160ms ease;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { margin-left: 4px; }
+
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 14px;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    .menu-button svg { width: 21px; height: 21px; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 76px 0 92px;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      width: 620px;
+      height: 620px;
+      right: -260px;
+      top: -190px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(204, 239, 220, 0.95), rgba(204, 239, 220, 0));
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      width: 390px;
+      height: 390px;
+      left: -250px;
+      bottom: -100px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(255, 216, 117, 0.24), rgba(255, 216, 117, 0));
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr);
+      align-items: center;
+      gap: 72px;
+    }
+
+    .hero-copy h1 {
+      margin: 18px 0 22px;
+      max-width: 700px;
+      font-size: clamp(3.15rem, 6vw, 5.65rem);
+      line-height: 0.97;
+      letter-spacing: -0.065em;
+    }
+
+    .hero-copy h1 .highlight {
+      position: relative;
+      color: var(--green-800);
+      white-space: nowrap;
+    }
+
+    .hero-copy h1 .highlight::after {
+      content: "";
+      position: absolute;
+      left: 2%;
+      right: -1%;
+      bottom: 1px;
+      height: 11px;
+      border-radius: 99px;
+      background: var(--yellow);
+      z-index: -1;
+      transform: rotate(-1.2deg);
+      opacity: 0.72;
+    }
+
+    .hero-copy > p {
+      max-width: 610px;
+      margin: 0 0 30px;
+      color: var(--ink-soft);
+      font-size: clamp(1.07rem, 1.7vw, 1.25rem);
+    }
+
+    .hero-form {
+      max-width: 650px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+      background: var(--white);
+      border: 1px solid rgba(16, 44, 52, 0.08);
+      border-radius: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .city-input-wrap {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      align-items: center;
+      gap: 6px;
+      padding-left: 4px;
+    }
+
+    .input-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--green-800);
+      background: var(--mint-100);
+    }
+
+    .input-icon svg { width: 19px; height: 19px; }
+
+    .input-stack label {
+      display: block;
+      margin-bottom: 1px;
+      color: var(--ink-soft);
+      font-size: 0.73rem;
+      font-weight: 700;
+    }
+
+    .input-stack input {
+      width: 100%;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      color: var(--ink);
+      background: transparent;
+      font-weight: 800;
+    }
+
+    .input-stack input::placeholder { color: #8aa09f; }
+
+    .hero-form .button { min-height: 56px; padding-inline: 24px; }
+
+    .microcopy {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 22px;
+      margin-top: 16px;
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      font-weight: 650;
+    }
+
+    .microcopy span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .microcopy svg { width: 15px; height: 15px; color: var(--green-700); }
+
+    /* Hero product mockup */
+    .hero-visual {
+      position: relative;
+      min-height: 590px;
+      display: grid;
+      place-items: center;
+    }
+
+    .route-line {
+      position: absolute;
+      inset: 5% 1% 0;
+      z-index: -1;
+      opacity: 0.75;
+    }
+
+    .product-shell {
+      position: relative;
+      width: min(100%, 490px);
+      padding: 16px;
+      border-radius: 38px;
+      background: #133740;
+      box-shadow: var(--shadow-lg);
+      transform: rotate(1.6deg);
+    }
+
+    .product-screen {
+      position: relative;
+      overflow: hidden;
+      min-height: 548px;
+      padding: 24px;
+      border-radius: 26px;
+      background: #f7faf8;
+    }
+
+    .screen-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .mini-brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.86rem;
+      font-weight: 900;
+    }
+
+    .mini-dot {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      color: var(--white);
+      background: var(--green-700);
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border: 3px solid var(--white);
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--yellow), var(--coral));
+      box-shadow: 0 6px 14px rgba(16, 44, 52, 0.12);
+    }
+
+    .welcome-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+      border-radius: 23px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--green-800), var(--green-600));
+    }
+
+    .welcome-card::after {
+      content: "";
+      position: absolute;
+      width: 145px;
+      height: 145px;
+      right: -42px;
+      top: -45px;
+      border-radius: 50%;
+      border: 28px solid rgba(255,255,255,0.10);
+    }
+
+    .welcome-card small {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
+      opacity: 0.78;
+    }
+
+    .welcome-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 18px;
+      max-width: 300px;
+      font-size: 1.65rem;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+    .progress-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-size: 0.8rem;
+      font-weight: 750;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .progress-fill {
+      width: 43%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--yellow);
+    }
+
+    .screen-section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 22px 1px 12px;
+    }
+
+    .screen-section-title h4 {
+      margin: 0;
+      font-size: 0.98rem;
+      letter-spacing: -0.02em;
+    }
+
+    .screen-section-title a {
+      color: var(--green-800);
+      font-size: 0.73rem;
+      font-weight: 800;
+    }
+
+    .task-list { display: grid; gap: 10px; }
+
+    .task-card {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 15px;
+      background: var(--white);
+      border: 1px solid #e5ede9;
+      box-shadow: 0 5px 14px rgba(16, 44, 52, 0.04);
+    }
+
+    .task-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: var(--green-800);
+      background: var(--mint-100);
+    }
+
+    .task-icon.coral { color: #b64b31; background: #ffebe4; }
+    .task-icon.yellow { color: #966d00; background: #fff5d8; }
+    .task-icon svg { width: 19px; height: 19px; }
+
+    .task-copy strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.82rem;
+    }
+
+    .task-copy span {
+      display: block;
+      color: var(--ink-soft);
+      font-size: 0.69rem;
+    }
+
+    .task-arrow {
+      width: 27px;
+      height: 27px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--ink-soft);
+      background: #f3f6f4;
+    }
+
+    .task-arrow svg { width: 13px; height: 13px; }
+
+    .verified-strip {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 13px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--green-900);
+      background: var(--mint-100);
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .verified-strip svg { width: 17px; height: 17px; flex: 0 0 auto; }
+
+    .floating-card {
+      position: absolute;
+      z-index: 3;
+      width: 218px;
+      padding: 15px;
+      border: 1px solid rgba(16, 44, 52, 0.08);
+      border-radius: 17px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+    }
+
+    .floating-card.top {
+      top: 40px;
+      right: -38px;
+      transform: rotate(4deg);
+    }
+
+    .floating-card.bottom {
+      left: -56px;
+      bottom: 40px;
+      transform: rotate(-4deg);
+    }
+
+    .float-header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 7px;
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .float-icon {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: var(--green-900);
+      background: var(--mint-100);
+    }
+
+    .float-icon.coral { color: #b64b31; background: #ffebe4; }
+    .float-icon svg { width: 16px; height: 16px; }
+
+    .floating-card p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.71rem;
+      line-height: 1.45;
+    }
+
+    /* Evidence bar */
+    .evidence {
+      padding: 0 0 84px;
+    }
+
+    .evidence-panel {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      align-items: stretch;
+      overflow: hidden;
+      border: 1px solid rgba(16, 44, 52, 0.08);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .evidence-intro, .evidence-stat { padding: 27px 30px; }
+
+    .evidence-intro {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: var(--white);
+      background: var(--ink);
+    }
+
+    .evidence-badge {
+      flex: 0 0 auto;
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--ink);
+      background: var(--yellow);
+    }
+
+    .evidence-badge svg { width: 22px; height: 22px; }
+    .evidence-intro strong { display: block; font-size: 1rem; }
+    .evidence-intro span { display: block; margin-top: 2px; color: #c5d3d4; font-size: 0.79rem; }
+
+    .evidence-stat {
+      border-left: 1px solid var(--line);
+    }
+
+    .evidence-stat strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--green-800);
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .evidence-stat span {
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      line-height: 1.35;
+    }
+
+    /* Benefits */
+    .benefits {
+      padding: 96px 0;
+      background: var(--white);
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .benefit-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 270px;
+      padding: 30px;
+      border-radius: var(--radius-md);
+      background: var(--mint-50);
+      border: 1px solid var(--line);
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .benefit-card:nth-child(2) { background: #fff9e9; }
+    .benefit-card:nth-child(3) { background: #fff3ee; }
+    .benefit-card:nth-child(4) { background: #f2f3fb; }
+
+    .benefit-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 32px;
+      border-radius: 16px;
+      color: var(--white);
+      background: var(--green-700);
+      box-shadow: 0 12px 22px rgba(17, 148, 99, 0.22);
+    }
+
+    .benefit-card:nth-child(2) .benefit-icon { color: #7c5c00; background: var(--yellow); box-shadow: 0 12px 22px rgba(255, 216, 117, 0.35); }
+    .benefit-card:nth-child(3) .benefit-icon { background: var(--coral); box-shadow: 0 12px 22px rgba(255, 141, 107, 0.30); }
+    .benefit-card:nth-child(4) .benefit-icon { background: #636fc1; box-shadow: 0 12px 22px rgba(99, 111, 193, 0.24); }
+    .benefit-icon svg { width: 25px; height: 25px; }
+
+    .benefit-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.42rem;
+      letter-spacing: -0.03em;
+    }
+
+    .benefit-card p {
+      max-width: 430px;
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+    }
+
+    .benefit-tag {
+      position: absolute;
+      right: 22px;
+      top: 22px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--green-900);
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(16,44,52,0.08);
+      font-size: 0.68rem;
+      font-weight: 850;
+    }
+
+    /* Timeline */
+    .timeline-section {
+      padding: 108px 0;
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .timeline-section .eyebrow { color: #8de2b3; }
+    .timeline-section .section-heading p { color: #b8c8ca; }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 29px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green-500), var(--yellow), var(--coral), #9da9ff);
+      opacity: 0.68;
+    }
+
+    .timeline-card {
+      position: relative;
+      z-index: 1;
+      padding: 0 8px;
+    }
+
+    .timeline-dot {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 25px;
+      border: 7px solid var(--ink);
+      border-radius: 50%;
+      color: var(--ink);
+      background: var(--green-500);
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.08);
+    }
+
+    .timeline-card:nth-child(2) .timeline-dot { background: var(--yellow); }
+    .timeline-card:nth-child(3) .timeline-dot { background: var(--coral); }
+    .timeline-card:nth-child(4) .timeline-dot { background: #9da9ff; }
+    .timeline-dot svg { width: 22px; height: 22px; }
+
+    .timeline-card small {
+      display: block;
+      margin-bottom: 7px;
+      color: #8de2b3;
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .timeline-card:nth-child(2) small { color: var(--yellow); }
+    .timeline-card:nth-child(3) small { color: #ffb49e; }
+    .timeline-card:nth-child(4) small { color: #c7ccff; }
+
+    .timeline-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      letter-spacing: -0.025em;
+    }
+
+    .timeline-card p {
+      margin: 0;
+      color: #b8c8ca;
+      font-size: 0.87rem;
+    }
+
+    /* How it works */
+    .how {
+      padding: 106px 0;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      counter-reset: steps;
+    }
+
+    .step-card {
+      counter-increment: steps;
+      position: relative;
+      padding: 31px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      box-shadow: 0 8px 22px rgba(16, 44, 52, 0.04);
+    }
+
+    .step-card::before {
+      content: "0" counter(steps);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 33px;
+      margin-bottom: 28px;
+      border-radius: 999px;
+      color: var(--green-900);
+      background: var(--mint-100);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .step-card h3 {
+      margin: 0 0 9px;
+      font-size: 1.25rem;
+      letter-spacing: -0.025em;
+    }
+
+    .step-card p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+
+    /* Lead magnet */
+    .pack-section { padding: 0 0 108px; }
+
+    .pack-panel {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 0.86fr;
+      align-items: center;
+      gap: 54px;
+      padding: 64px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--green-800), var(--green-600));
+      color: var(--white);
+      box-shadow: 0 24px 70px rgba(8, 121, 87, 0.25);
+    }
+
+    .pack-panel::before, .pack-panel::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 34px solid rgba(255,255,255,0.07);
+    }
+
+    .pack-panel::before { width: 250px; height: 250px; right: -110px; top: -130px; }
+    .pack-panel::after { width: 180px; height: 180px; left: 44%; bottom: -145px; }
+
+    .pack-copy, .pack-form-card { position: relative; z-index: 1; }
+
+    .pack-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 17px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.13);
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .pack-kicker svg { width: 16px; height: 16px; }
+
+    .pack-copy h2 {
+      margin: 0 0 15px;
+      max-width: 600px;
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      line-height: 1.02;
+      letter-spacing: -0.052em;
+    }
+
+    .pack-copy p {
+      max-width: 570px;
+      margin: 0 0 24px;
+      color: #dbf2e6;
+      font-size: 1.04rem;
+    }
+
+    .pack-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pack-list li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .pack-list svg { width: 17px; height: 17px; color: var(--yellow); flex: 0 0 auto; }
+
+    .pack-form-card {
+      padding: 28px;
+      border-radius: 24px;
+      color: var(--ink);
+      background: var(--white);
+      box-shadow: 0 20px 45px rgba(2, 63, 43, 0.20);
+    }
+
+    .pack-form-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.25rem;
+      letter-spacing: -0.025em;
+    }
+
+    .pack-form-card > p {
+      margin: 0 0 18px;
+      color: var(--ink-soft);
+      font-size: 0.83rem;
+    }
+
+    .field { margin-bottom: 12px; }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink-soft);
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+
+    .field input {
+      width: 100%;
+      min-height: 49px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      color: var(--ink);
+      background: #fbfdfc;
+      outline: 0;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .field input:focus {
+      border-color: var(--green-600);
+      box-shadow: 0 0 0 4px rgba(53, 185, 111, 0.13);
+    }
+
+    .pack-form-card .button { width: 100%; margin-top: 3px; }
+
+    .privacy-note {
+      margin: 11px 0 0 !important;
+      text-align: center;
+      font-size: 0.69rem !important;
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 108px 0;
+      background: var(--white);
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .faq-layout .section-heading {
+      position: sticky;
+      top: 110px;
+      margin: 0;
+    }
+
+    .faq-list { display: grid; gap: 12px; }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--mint-50);
+      transition: background 160ms ease;
+    }
+
+    details[open] { background: var(--white); box-shadow: var(--shadow-sm); }
+
+    summary {
+      position: relative;
+      padding: 21px 56px 21px 22px;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 850;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      width: 27px;
+      height: 27px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--green-900);
+      background: var(--mint-100);
+      transform: translateY(-50%);
+      font-size: 1.16rem;
+      line-height: 1;
+    }
+
+    details[open] summary::after { content: "–"; }
+
+    .faq-answer {
+      padding: 0 22px 22px;
+      color: var(--ink-soft);
+      font-size: 0.91rem;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 40px 0;
+      color: #c6d4d5;
+      background: #0b242b;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .site-footer .brand { color: var(--white); }
+    .site-footer .brand span:last-child { color: #8de2b3; }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      z-index: 50;
+      left: 50%;
+      bottom: 28px;
+      min-width: min(92vw, 410px);
+      padding: 15px 18px;
+      border-radius: 15px;
+      color: var(--white);
+      background: var(--ink);
+      box-shadow: 0 18px 44px rgba(16,44,52,0.28);
+      transform: translate(-50%, 120px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 260ms ease, opacity 260ms ease;
+      font-size: 0.9rem;
+      font-weight: 750;
+    }
+
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+    /* Responsive */
+    @media (max-width: 1060px) {
+      .hero-grid { gap: 38px; grid-template-columns: minmax(0, 1fr) minmax(380px, 0.82fr); }
+      .floating-card.top { right: -12px; }
+      .floating-card.bottom { left: -12px; }
+      .pack-panel { padding: 48px; gap: 34px; }
+      .faq-layout { gap: 48px; }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .menu-button { display: grid; }
+
+      .nav-links.open {
+        position: absolute;
+        top: 76px;
+        left: 20px;
+        right: 20px;
+        display: grid;
+        gap: 0;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .nav-links.open a { padding: 14px 12px; border-radius: 10px; }
+      .nav-links.open a:hover { background: var(--mint-50); }
+
+      .hero { padding-top: 56px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 58px; }
+      .hero-copy { text-align: center; }
+      .hero-copy h1, .hero-copy > p, .hero-form { margin-left: auto; margin-right: auto; }
+      .microcopy { justify-content: center; }
+      .hero-visual { min-height: 560px; }
+      .product-shell { width: min(90%, 490px); }
+      .floating-card.top { right: 4%; }
+      .floating-card.bottom { left: 3%; }
+
+      .evidence-panel { grid-template-columns: 1fr 1fr; }
+      .evidence-intro { grid-column: 1 / -1; }
+      .evidence-stat:first-of-type { border-left: 0; }
+
+      .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 18px; }
+      .timeline::before { display: none; }
+
+      .pack-panel { grid-template-columns: 1fr; }
+      .pack-copy { text-align: center; }
+      .pack-copy p { margin-inline: auto; }
+      .pack-list { max-width: 540px; margin-inline: auto; text-align: left; }
+      .pack-form-card { width: min(100%, 560px); margin-inline: auto; }
+
+      .faq-layout { grid-template-columns: 1fr; }
+      .faq-layout .section-heading { position: static; }
+    }
+
+    @media (max-width: 680px) {
+      .container { width: min(100% - 28px, var(--max-width)); }
+      .hero { padding: 44px 0 68px; }
+      .hero-copy h1 { font-size: clamp(2.75rem, 15vw, 4.2rem); }
+      .hero-copy h1 .highlight { white-space: normal; }
+      .hero-form { grid-template-columns: 1fr; padding: 12px; }
+      .hero-form .button { width: 100%; }
+      .city-input-wrap { min-height: 52px; }
+      .microcopy { gap: 9px 14px; }
+
+      .hero-visual { min-height: 510px; }
+      .product-shell { width: 100%; padding: 10px; border-radius: 28px; transform: none; }
+      .product-screen { min-height: auto; padding: 18px; border-radius: 20px; }
+      .floating-card { display: none; }
+      .route-line { inset: 0; }
+
+      .evidence { padding-bottom: 64px; }
+      .evidence-panel { grid-template-columns: 1fr; }
+      .evidence-stat { border-left: 0; border-top: 1px solid var(--line); }
+      .evidence-intro, .evidence-stat { padding: 23px; }
+
+      .benefits, .how, .faq-section, .timeline-section { padding: 78px 0; }
+      .section-heading { margin-bottom: 32px; }
+      .benefit-grid, .steps, .timeline { grid-template-columns: 1fr; }
+      .benefit-card { min-height: 250px; padding: 24px; }
+      .benefit-icon { margin-bottom: 26px; }
+      .timeline-card { display: grid; grid-template-columns: 58px 1fr; column-gap: 17px; padding: 0; }
+      .timeline-dot { grid-row: 1 / span 3; margin: 0; }
+      .timeline-card small { margin-top: 4px; }
+      .timeline-card p { grid-column: 2; }
+
+      .pack-section { padding-bottom: 78px; }
+      .pack-panel { padding: 34px 20px; border-radius: 24px; }
+      .pack-list { grid-template-columns: 1fr; }
+      .pack-form-card { padding: 22px; }
+
+      .footer-row { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 12px 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="SettleIn home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 11.5 12 5l8 6.5" />
+            <path d="M6.5 10.5V20h11v-9.5" />
+            <path d="M9.5 20v-5h5v5" />
+          </svg>
+        </span>
+        <span>Settle<span>In</span></span>
+      </a>
+
+      <nav class="nav-links" id="mainNav" aria-label="Primary navigation">
+        <a href="#inside">What's inside</a>
+        <a href="#journey">Your journey</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a class="button button-primary nav-cta" href="#survival-pack">Get the free pack</a>
+
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-controls="mainNav" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Built for international students</span>
+          <h1>Move abroad. Feel <span class="highlight">at home faster.</span></h1>
+          <p>Verified housing guidance, essential paperwork, local shopping tips, and culture know-how—organized into one calm, personalized plan for your first 60 days.</p>
+
+          <form class="hero-form" id="cityPlanForm">
+            <div class="city-input-wrap">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+                  <circle cx="12" cy="10" r="2.6" />
+                </svg>
+              </span>
+              <div class="input-stack">
+                <label for="heroCity">Where are you moving?</label>
+                <input id="heroCity" name="city" type="text" placeholder="e.g. Stockholm" autocomplete="address-level2" required />
+              </div>
+            </div>
+            <button class="button button-primary" type="submit">
+              Build my arrival plan
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
+          </form>
+
+          <div class="microcopy" aria-label="Key product qualities">
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>
+              No more scattered tabs
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>
+              Student-first guidance
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>
+              Pre-verified essentials
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Preview of the SettleIn student relocation dashboard">
+          <svg class="route-line" viewBox="0 0 600 620" fill="none" aria-hidden="true">
+            <path d="M38 463C132 560 229 572 285 478c61-103-11-183 63-269 58-68 125-46 205-126" stroke="#95d8b4" stroke-width="3" stroke-linecap="round" stroke-dasharray="9 12"/>
+            <circle cx="39" cy="463" r="8" fill="#FF8D6B"/>
+            <path d="m546 71 20 8-14 17" stroke="#087957" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+
+          <div class="product-shell">
+            <div class="product-screen">
+              <div class="screen-topbar">
+                <div class="mini-brand">
+                  <span class="mini-dot">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10.5V20h11v-9.5"/></svg>
+                  </span>
+                  SettleIn
+                </div>
+                <span class="avatar" aria-hidden="true"></span>
+              </div>
+
+              <div class="welcome-card">
+                <small>Your move to</small>
+                <h3 id="previewCity">Your new city</h3>
+                <div class="progress-row">
+                  <span>3 of 7 essentials ready</span>
+                  <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+                  <span>43%</span>
+                </div>
+              </div>
+
+              <div class="screen-section-title">
+                <h4>Your next steps</h4>
+                <a href="#inside">View all</a>
+              </div>
+
+              <div class="task-list">
+                <div class="task-card">
+                  <span class="task-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/><path d="M9 20v-5h6v5"/></svg>
+                  </span>
+                  <span class="task-copy"><strong>Compare areas to live</strong><span>Budget, commute and student fit</span></span>
+                  <span class="task-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></span>
+                </div>
+
+                <div class="task-card">
+                  <span class="task-icon coral">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
+                  </span>
+                  <span class="task-copy"><strong>Finish local paperwork</strong><span>Clear steps, links and deadlines</span></span>
+                  <span class="task-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></span>
+                </div>
+
+                <div class="task-card">
+                  <span class="task-icon yellow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                  </span>
+                  <span class="task-copy"><strong>Shop your first-week list</strong><span>Only the essentials, locally sourced</span></span>
+                  <span class="task-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></span>
+                </div>
+              </div>
+
+              <div class="verified-strip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+                Guidance checked before it reaches your plan
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-card top">
+            <div class="float-header">
+              <span class="float-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.3 8 11 4.6-2.7 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+              </span>
+              Housing safety check
+            </div>
+            <p>Know the warning signs before you pay a deposit or sign a contract.</p>
+          </div>
+
+          <div class="floating-card bottom">
+            <div class="float-header">
+              <span class="float-icon coral">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10M7 12h7M7 16h4"/><path d="M5 3h14a2 2 0 0 1 2 2v14l-4-3H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/></svg>
+              </span>
+              Local culture, decoded
+            </div>
+            <p>Practical etiquette and everyday norms—without the awkward guesswork.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="evidence" aria-label="Early student research">
+      <div class="container">
+        <div class="evidence-panel">
+          <div class="evidence-intro">
+            <span class="evidence-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19V3"/></svg>
+            </span>
+            <div>
+              <strong>The problem is measurable</strong>
+              <span>Signals from the founders' early student survey</span>
+            </div>
+          </div>
+          <div class="evidence-stat">
+            <strong>43%</strong>
+            <span>struggle with scattered relocation information.</span>
+          </div>
+          <div class="evidence-stat">
+            <strong>36%</strong>
+            <span>distrust housing listings and administrative guidance.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits" id="inside">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">One reliable relocation hub</span>
+          <h2>Everything between landing and feeling settled.</h2>
+          <p>SettleIn turns fragmented advice into clear, city-specific actions—so students know what to do, where to look, and what to trust.</p>
+        </div>
+
+        <div class="benefit-grid">
+          <article class="benefit-card">
+            <span class="benefit-tag">Housing</span>
+            <span class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/><path d="M9 20v-5h6v5"/></svg>
+            </span>
+            <h3>Find a place you can trust</h3>
+            <p>Compare areas by rent, commute, safety, student lifestyle, and practical trade-offs. Learn the local rental process and spot common scam signals before paying.</p>
+          </article>
+
+          <article class="benefit-card">
+            <span class="benefit-tag">Administration</span>
+            <span class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
+            </span>
+            <h3>Get the paperwork done</h3>
+            <p>Follow a prioritized checklist for registrations, university requirements, banking, healthcare, transport, and other city-specific essentials.</p>
+          </article>
+
+          <article class="benefit-card">
+            <span class="benefit-tag">First-week essentials</span>
+            <span class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M10 13h4"/></svg>
+            </span>
+            <h3>Buy what matters first</h3>
+            <p>Use practical starter lists for your room, kitchen, connectivity, transit, and seasonal needs—with local options and realistic student budgets.</p>
+          </article>
+
+          <article class="benefit-card">
+            <span class="benefit-tag">Local life</span>
+            <span class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10M7 12h7M7 16h4"/><path d="M5 3h14a2 2 0 0 1 2 2v14l-4-3H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/></svg>
+            </span>
+            <h3>Understand how the city works</h3>
+            <p>Learn everyday etiquette, local habits, social norms, useful phrases, and student-friendly places—without relying on random forum threads.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline-section" id="journey">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">A calmer first 60 days</span>
+          <h2>Your move, mapped to the moment you need it.</h2>
+          <p>Information is sequenced by timing and urgency, so you can focus on the next right action instead of researching everything at once.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-card">
+            <span class="timeline-dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-8-8 18-2-8-8-2Z"/><path d="m11 13 4-4"/></svg>
+            </span>
+            <small>2–6 weeks before</small>
+            <h3>Prepare with confidence</h3>
+            <p>Shortlist neighborhoods, estimate costs, review documents, and build your personalized pre-arrival plan.</p>
+          </article>
+
+          <article class="timeline-card">
+            <span class="timeline-dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="9"/></svg>
+            </span>
+            <small>Arrival week</small>
+            <h3>Handle the essentials</h3>
+            <p>Set up transit, connectivity, payments, groceries, and the immediate tasks that make daily life function.</p>
+          </article>
+
+          <article class="timeline-card">
+            <span class="timeline-dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="17" rx="2"/><path d="m9 15 2 2 4-4"/></svg>
+            </span>
+            <small>First month</small>
+            <h3>Complete formalities</h3>
+            <p>Finish registrations, university administration, healthcare access, banking, and longer-term housing steps.</p>
+          </article>
+
+          <article class="timeline-card">
+            <span class="timeline-dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8M17 11v8M4 19h16"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M9 11a3 3 0 0 1 6 0"/></svg>
+            </span>
+            <small>Month two</small>
+            <h3>Build a real routine</h3>
+            <p>Discover your neighborhood, understand local culture, and turn a temporary arrival into a sustainable student life.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">How SettleIn works</span>
+          <h2>From uncertainty to a clear next step.</h2>
+          <p>The experience is deliberately simple: tell us where and when you are moving, then follow a plan tailored to your stage.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step-card">
+            <h3>Tell us about your move</h3>
+            <p>Choose your destination, arrival date, university context, and the topics causing the most uncertainty.</p>
+          </article>
+          <article class="step-card">
+            <h3>Get your city plan</h3>
+            <p>Receive one prioritized checklist combining housing, administration, essential purchases, and local guidance.</p>
+          </article>
+          <article class="step-card">
+            <h3>Settle in, one task at a time</h3>
+            <p>Track progress, revisit verified guidance, and unlock the next actions as your arrival date approaches.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pack-section" id="survival-pack">
+      <div class="container">
+        <div class="pack-panel">
+          <div class="pack-copy">
+            <span class="pack-kicker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+              Free pre-arrival survival pack
+            </span>
+            <h2>Land with a plan—not a hundred open tabs.</h2>
+            <p>Start with a practical pack designed for the weeks before your move. It turns the highest-stress decisions into a short, usable checklist.</p>
+            <ul class="pack-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg> Housing due-diligence checklist</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg> First-week essentials list</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg> Administrative prep tracker</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg> Budget and arrival timeline</li>
+            </ul>
+          </div>
+
+          <form class="pack-form-card" id="packForm">
+            <h3>Send me the survival pack</h3>
+            <p>Join the early access list and help shape SettleIn.</p>
+            <div class="field">
+              <label for="email">Student email</label>
+              <input id="email" name="email" type="email" placeholder="you@university.edu" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="destination">Destination city</label>
+              <input id="destination" name="destination" type="text" placeholder="Where are you moving?" autocomplete="address-level2" required />
+            </div>
+            <button class="button button-primary" type="submit">
+              Get the free pack
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="privacy-note">No spam. Only useful relocation updates.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="container faq-layout">
+        <div class="section-heading">
+          <span class="eyebrow">Questions, answered</span>
+          <h2>What students need to know before joining.</h2>
+          <p>SettleIn is designed for incoming and recently arrived international university students, especially during the first two months in a new city.</p>
+        </div>
+
+        <div class="faq-list">
+          <details open>
+            <summary>Is SettleIn only for students who have not arrived yet?</summary>
+            <div class="faq-answer">No. The core experience covers both pre-arrival preparation and the first 0–2 months after arrival, when housing, paperwork, essentials, and local routines are still being resolved.</div>
+          </details>
+          <details>
+            <summary>How is the information different from blogs or social media?</summary>
+            <div class="faq-answer">SettleIn organizes guidance by city, timing, and task. The aim is to reduce contradictory advice by prioritizing pre-verified sources and presenting the next action—not another long list of links.</div>
+          </details>
+          <details>
+            <summary>What topics will the app cover?</summary>
+            <div class="faq-answer">The initial scope centers on housing, administrative steps, first-week purchases, transport, banking, healthcare access, local culture, and practical city survival guidance.</div>
+          </details>
+          <details>
+            <summary>Why start with a survival pack?</summary>
+            <div class="faq-answer">It is a fast way to test whether students find the content genuinely useful before the full product is built. Feedback on the pack can reveal which city, timing, and topic should be prioritized first.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <a class="brand" href="#top" aria-label="SettleIn home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10.5V20h11v-9.5"/><path d="M9.5 20v-5h5v5"/></svg>
+        </span>
+        <span>Settle<span>In</span></span>
+      </a>
+      <div class="footer-links">
+        <a href="#inside">What's inside</a>
+        <a href="#journey">Your journey</a>
+        <a href="#survival-pack">Early access</a>
+        <span>© <span id="year"></span> SettleIn</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const mainNav = document.getElementById('mainNav');
+    const heroCity = document.getElementById('heroCity');
+    const previewCity = document.getElementById('previewCity');
+    const destination = document.getElementById('destination');
+    const toast = document.getElementById('toast');
+    let toastTimer;
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+
+    mainNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open menu');
+      });
+    });
+
+    heroCity.addEventListener('input', () => {
+      const city = heroCity.value.trim();
+      previewCity.textContent = city || 'Your new city';
+    });
+
+    function showToast(message) {
+      clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.classList.add('show');
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3800);
+    }
+
+    document.getElementById('cityPlanForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const city = heroCity.value.trim();
+      destination.value = city;
+      document.getElementById('survival-pack').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => document.getElementById('email').focus({ preventScroll: true }), 650);
+      showToast(`Great—let's start your ${city} arrival plan.`);
+    });
+
+    document.getElementById('packForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const city = destination.value.trim();
+      showToast(`You're on the list. Your ${city} survival pack is the next step.`);
+      event.currentTarget.reset();
+    });
+  </script>
+</body>
+</html>
