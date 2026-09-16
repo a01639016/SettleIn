@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="SettleIn: a practical guide for international students newly arrived in Stockholm.">
   <title>SettleIn · Stockholm starter guide</title>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R052RTC355"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments)}
+    gtag('js', new Date());
+    gtag('config', 'G-R052RTC355');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Seymour+One&display=swap" rel="stylesheet">
@@ -207,11 +215,22 @@
               <div class="form-field"><label for="university">University</label><input id="university" name="university" type="text" placeholder="e.g. KTH, SU or SSE"></div>
               <div class="form-field"><label for="arrivalStage">Where are you in your exchange journey? *</label><select id="arrivalStage" name="arrival_stage" required><option value="" selected disabled>Select one</option><option>Arriving in 4–6 months</option><option>Arriving in 1–3 months</option><option>Arriving in less than 1 month</option><option>In Stockholm for less than 1 month</option></select></div>
               <fieldset class="form-group"><legend>What would you like help with? *</legend><div class="check-grid"><label class="check-option"><input type="checkbox" name="help_topics" value="Housing"> Housing</label><label class="check-option"><input type="checkbox" name="help_topics" value="University life"> University life</label><label class="check-option"><input type="checkbox" name="help_topics" value="Daily life"> Daily life</label><label class="check-option"><input type="checkbox" name="help_topics" value="Other"> Other</label></div></fieldset>
+              <div class="form-field"><label for="discoverySource">How did you hear about SettleIn? *</label><select id="discoverySource" name="discovery_source" required><option value="" selected disabled>Select one</option><option>University or student organization</option><option>Friend or classmate</option><option>Instagram</option><option>TikTok</option><option>WhatsApp group</option><option>Google or another search engine</option><option>Other</option></select></div>
+              <div class="form-field"><label for="willingnessToPay">Would you consider paying €15 for SettleIn? *</label><select id="willingnessToPay" name="willingness_to_pay_15_eur" required><option value="" selected disabled>Select one</option><option value="Yes">Yes</option><option value="Maybe">Maybe</option><option value="No">No</option></select></div>
               <div class="form-field"><label for="contactMethod">Preferred contact *</label><select id="contactMethod" name="preferred_contact" required><option value="" selected disabled>Select one</option><option>Email</option><option>WhatsApp</option></select></div>
               <div class="form-field"><label for="whatsapp">WhatsApp number</label><input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="Include country code"></div>
               <div class="form-field full"><label for="studentMessage">What would you like to talk about?</label><textarea id="studentMessage" name="message" placeholder="Tell us briefly what you need help with."></textarea></div>
               <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden>
               <input type="hidden" name="source" value="SettleIn Stockholm prototype">
+              <input type="hidden" name="utm_source" id="utmSource">
+              <input type="hidden" name="utm_medium" id="utmMedium">
+              <input type="hidden" name="utm_campaign" id="utmCampaign">
+              <input type="hidden" name="utm_content" id="utmContent">
+              <input type="hidden" name="utm_term" id="utmTerm">
+              <input type="hidden" name="landing_page" id="landingPage">
+              <input type="hidden" name="referrer" id="referrer">
+              <input type="hidden" name="form_started_at" id="formStartedAt">
+              <input type="hidden" name="submitted_at" id="submittedAt">
               <label class="consent"><input type="checkbox" name="consent" value="Yes" required> <span>I agree that SettleIn may use this information to contact me about student support. *</span></label>
               <button class="submit-interest" type="submit">Register my interest</button>
               <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
@@ -266,12 +285,19 @@
     function showDistrict(key){const d=districts[key];document.getElementById('districtDetail').innerHTML=`<div class="big">${d.emoji}</div><h3>${d.name}</h3><p>${d.copy}</p><div class="detail-chips">${d.chips.map(x=>`<span>${x}</span>`).join('')}</div><div class="agency"><small>Start with</small><a href="${d.url}" target="_blank" rel="noopener">${d.agency} ↗</a></div>`}
     document.querySelectorAll('.district').forEach(btn=>{btn.setAttribute('aria-pressed','false');btn.addEventListener('click',()=>{const key=btn.dataset.key;selectedLivingAreas.has(key)?selectedLivingAreas.delete(key):selectedLivingAreas.add(key);selectedCategories.add('vivienda');showDistrict(key);applyFilters()})});showDistrict('lappis');
     const interestForm=document.getElementById('interestForm'),formStatus=document.getElementById('formStatus'),submitInterest=interestForm.querySelector('.submit-interest');
+    const campaignParams=new URLSearchParams(window.location.search),trackingFields={utm_source:'utmSource',utm_medium:'utmMedium',utm_campaign:'utmCampaign',utm_content:'utmContent',utm_term:'utmTerm'};
+    Object.entries(trackingFields).forEach(([parameter,id])=>{document.getElementById(id).value=campaignParams.get(parameter)||''});
+    document.getElementById('landingPage').value=window.location.href;
+    document.getElementById('referrer').value=document.referrer||'Direct / unavailable';
+    let formStarted=false;
+    interestForm.addEventListener('input',()=>{if(!formStarted){document.getElementById('formStartedAt').value=new Date().toISOString();formStarted=true;gtag('event','form_start',{form_name:'SettleIn student interest'})}},{once:true});
     interestForm.addEventListener('submit',async event=>{
       event.preventDefault();
       const topics=[...interestForm.querySelectorAll('input[name="help_topics"]:checked')];
       if(!topics.length){formStatus.textContent='Please select at least one topic you would like help with.';formStatus.className='form-status show error';return}
+      document.getElementById('submittedAt').value=new Date().toISOString();
       submitInterest.disabled=true;submitInterest.textContent='Sending…';formStatus.className='form-status';
-      try{const response=await fetch(interestForm.action,{method:'POST',body:new FormData(interestForm),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('Submission failed');interestForm.reset();formStatus.textContent='Thank you! Your registration was sent successfully.';formStatus.className='form-status show success'}catch(error){formStatus.textContent='We could not send your registration. Please try again.';formStatus.className='form-status show error'}finally{submitInterest.disabled=false;submitInterest.textContent='Register my interest'}
+      try{const response=await fetch(interestForm.action,{method:'POST',body:new FormData(interestForm),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('Submission failed');gtag('event','generate_lead',{form_name:'SettleIn student interest',willingness_to_pay:document.getElementById('willingnessToPay').value,discovery_source:document.getElementById('discoverySource').value});interestForm.reset();formStatus.textContent='Thank you! Your registration was sent successfully.';formStatus.className='form-status show success'}catch(error){formStatus.textContent='We could not send your registration. Please try again.';formStatus.className='form-status show error'}finally{submitInterest.disabled=false;submitInterest.textContent='Register my interest'}
     });
   </script>
 </body>
