@@ -90,18 +90,36 @@
     @keyframes route{to{stroke-dashoffset:-230}}
     @media(max-width:650px){nav{height:74px}.brand{width:145px;height:46px}.brand-logo{width:201px;left:-28px;top:-36px}.hero{padding-top:55px}.hero-card{border-radius:55px 4px}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.migration{padding:34px 20px;border-radius:4px 55px 4px 4px}.district-detail{border-radius:4px 50px 4px 4px}.footer-row .brand{margin-bottom:18px}.prototype-note{margin-bottom:18px!important}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.map-line path{animation:none}}
+    /* App-style page views: preserve SettleIn identity while avoiding one long page */
+    .app-view{display:none;animation:viewIn .28s ease}
+    .app-view.active{display:block}
+    .view-shell{padding:54px 0 20px;min-height:calc(100vh - 86px)}
+    .view-title{max-width:760px;margin-bottom:34px}
+    .view-title h2{font-family:var(--display);font-weight:400;color:var(--green);font-size:clamp(32px,4.6vw,58px);line-height:1.03;margin:8px 0 14px}
+    .view-title p{max-width:650px;color:var(--muted);font-size:20px;margin:0}
+    .home-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0 46px}
+    .home-tile{border:1px solid var(--line);background:var(--paper);padding:26px;border-radius:5px;min-height:220px;text-align:left;cursor:pointer;transition:.2s;position:relative;overflow:hidden}
+    .home-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .home-tile .tile-icon{font-size:31px}.home-tile h3{font-family:var(--display);font-weight:400;color:var(--green);font-size:18px;margin:22px 0 8px}.home-tile p{color:var(--muted);margin:0;max-width:270px}.home-tile b{position:absolute;right:22px;bottom:18px;color:var(--coral);font-size:22px}
+    .home-tile.featured{background:var(--green);color:white}.home-tile.featured h3{color:white}.home-tile.featured p{color:var(--mint)}.home-tile.featured b{color:var(--lime)}
+    .progress-card{background:var(--cream);border:1px solid var(--line);padding:24px;border-radius:5px 55px 5px 5px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-bottom:44px}.progress-card h3{font-family:var(--display);font-weight:400;color:var(--green);font-size:18px;margin:0 0 7px}.progress-card p{margin:0;color:var(--muted)}.progress-track{height:9px;background:rgba(18,60,74,.12);margin-top:16px;overflow:hidden}.progress-fill{width:64%;height:100%;background:var(--coral)}.progress-number{font-family:var(--display);font-size:28px;color:var(--green)}
+    .navlinks a.active{color:var(--coral);text-decoration:underline;text-underline-offset:7px}
+    .app-view .migration,.app-view .housing,.app-view .contact-section{margin-top:0}
+    @keyframes viewIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+    @media(max-width:800px){.home-grid{grid-template-columns:1fr}.home-tile{min-height:170px}.progress-card{grid-template-columns:1fr}.progress-number{justify-self:start}}
   </style>
 </head>
 <body>
   <header class="topbar">
     <nav class="shell" aria-label="Main navigation">
       <a class="brand" href="#inicio" aria-label="SettleIn home"><img class="brand-logo" src="SettleIn Logo.png" alt="SettleIn"></a>
-      <div class="navlinks"><a href="#explora">Explore</a><a href="#vivienda">Housing</a><a href="#migracion">Immigration</a><a href="#contacto">Talk to someone</a></div>
+      <div class="navlinks"><a href="#inicio" data-view-link="home">Home</a><a href="#explora" data-view-link="explore">Explore</a><a href="#vivienda" data-view-link="housing">Housing</a><a href="#migracion" data-view-link="admin">Admin</a><a href="#contacto" data-view-link="support">Support</a></div>
     </nav>
   </header>
 
   <main id="inicio">
     <div class="shell">
+      <section class="app-view active" data-view="home">
       <div class="hero">
         <div>
           <span class="eyebrow"><span class="dot"></span> Stockholm starter guide</span>
@@ -120,6 +138,14 @@
           <div class="hero-card-copy"><small>Your essential map</small><strong>From newcomer to local.</strong></div>
         </div>
       </div>
+      <div class="home-grid" aria-label="SettleIn quick access">
+        <button class="home-tile featured" data-go-view="housing"><span class="tile-icon">🏡</span><h3>Find your area</h3><p>Compare student-friendly areas and where to begin your housing search.</p><b>→</b></button>
+        <button class="home-tile" data-go-view="admin"><span class="tile-icon">✓</span><h3>Get your admin sorted</h3><p>Start with the immigration pathway that applies to your situation.</p><b>→</b></button>
+        <button class="home-tile" data-go-view="explore"><span class="tile-icon">⌖</span><h3>Explore Stockholm</h3><p>Universities, groceries, transport and local life on one interactive map.</p><b>→</b></button>
+      </div>
+      <div class="progress-card"><div><h3>Your Stockholm setup</h3><p>Prototype preview of how SettleIn can guide your relocation step by step.</p><div class="progress-track"><div class="progress-fill"></div></div></div><div class="progress-number">64%</div></div>
+      </section>
+      <div class="app-view view-shell" data-view="explore">
       <section id="explora">
         <div class="section-head"><div><span class="kicker">Explore Stockholm</span><h2>What you need,<br>when you need it.</h2></div><p>Use the filters to update both the map and the guide, then open verified pages for the details.</p></div>
         <div id="guideMap" class="guide-map" aria-label="Interactive map of SettleIn locations"></div>
@@ -170,7 +196,9 @@
         </div>
         <div class="empty" id="emptyState">No results found. Try “KTH”, “affordable”, “music” or “metro”.</div>
       </section>
+      </div>
 
+      <div class="app-view view-shell" data-view="housing">
       <section class="housing" id="vivienda">
         <div class="section-head"><div><span class="kicker">Where to live</span><h2>Areas that work<br>for students.</h2></div><p>Choose an area to see its profile and where to begin your search. In Stockholm, a good metro connection is often more valuable than living in the centre.</p></div>
         <div class="districts">
@@ -184,7 +212,9 @@
           <aside class="district-detail" id="districtDetail" aria-live="polite"></aside>
         </div>
       </section>
+      </div>
 
+      <div class="app-view view-shell" data-view="admin">
       <section class="migration" id="migracion">
         <div class="section-head"><div><span class="kicker">Immigration pathway</span><h2>First, identify<br>your situation.</h2></div><p>This guidance does not replace an official assessment. Always confirm your situation with Migrationsverket and Skatteverket.</p></div>
         <p class="nationality-note"><strong>Coming soon:</strong> more detailed immigration guidance tailored to individual nationalities and student profiles.</p>
@@ -194,7 +224,9 @@
         </div>
         <div class="callout"><strong>2026 figure:</strong> for study-permit applications submitted in 2026, Migrationsverket states a maintenance requirement of at least <strong>SEK 10,656 per month</strong>. The amount and rules may change, so check them before applying.</div>
       </section>
+      </div>
 
+      <div class="app-view view-shell" data-view="support">
       <section class="contact-section" id="contacto">
         <div class="contact-intro">
           <div class="contact-copy">
@@ -216,7 +248,7 @@
               <div class="form-field"><label for="arrivalStage">Where are you in your exchange journey? *</label><select id="arrivalStage" name="arrival_stage" required><option value="" selected disabled>Select one</option><option>Arriving in 4–6 months</option><option>Arriving in 1–3 months</option><option>Arriving in less than 1 month</option><option>In Stockholm for less than 1 month</option></select></div>
               <fieldset class="form-group"><legend>What would you like help with? *</legend><div class="check-grid"><label class="check-option"><input type="checkbox" name="help_topics" value="Housing"> Housing</label><label class="check-option"><input type="checkbox" name="help_topics" value="University life"> University life</label><label class="check-option"><input type="checkbox" name="help_topics" value="Daily life"> Daily life</label><label class="check-option"><input type="checkbox" name="help_topics" value="Other"> Other</label></div></fieldset>
               <div class="form-field"><label for="discoverySource">How did you hear about SettleIn? *</label><select id="discoverySource" name="discovery_source" required><option value="" selected disabled>Select one</option><option>University or student organization</option><option>Friend or classmate</option><option>Instagram</option><option>TikTok</option><option>WhatsApp group</option><option>Google or another search engine</option><option>Other</option></select></div>
-              <div class="form-field"><label for="willingnessToPay">Would you consider paying €15 for SettleIn? *</label><select id="willingnessToPay" name="willingness_to_pay_15_eur" required><option value="" selected disabled>Select one</option><option value="Yes">Yes</option><option value="Maybe">Maybe</option><option value="No">No</option></select></div>
+              <div class="form-field"><label for="willingnessToPay">How much would you be willing to pay for this service? *</label><select id="willingnessToPay" name="willingness_to_pay" required><option value="" selected disabled>Select one</option><option value="€0">€0</option><option value="€1–5">€1–5</option><option value="€6–10">€6–10</option><option value="€11–15">€11–15</option><option value="€16–20">€16–20</option><option value="€21+">€21+</option></select></div>
               <div class="form-field"><label for="contactMethod">Preferred contact *</label><select id="contactMethod" name="preferred_contact" required><option value="" selected disabled>Select one</option><option>Email</option><option>WhatsApp</option></select></div>
               <div class="form-field"><label for="whatsapp">WhatsApp number</label><input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="Include country code"></div>
               <div class="form-field full"><label for="studentMessage">What would you like to talk about?</label><textarea id="studentMessage" name="message" placeholder="Tell us briefly what you need help with."></textarea></div>
@@ -238,6 +270,7 @@
           </form>
         </div>
       </section>
+      </div>
     </div>
   </main>
 
@@ -245,10 +278,24 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
+    const appViews=[...document.querySelectorAll('.app-view')],viewLinks=[...document.querySelectorAll('[data-view-link]')];
+    function showView(name,{updateHash=true}={}){
+      appViews.forEach(view=>view.classList.toggle('active',view.dataset.view===name));
+      viewLinks.forEach(link=>link.classList.toggle('active',link.dataset.viewLink===name));
+      if(updateHash){const hashes={home:'#inicio',explore:'#explora',housing:'#vivienda',admin:'#migracion',support:'#contacto'};history.replaceState(null,'',hashes[name]||'#inicio')}
+      window.scrollTo({top:0,behavior:'smooth'});
+      if(name==='explore')setTimeout(()=>map.invalidateSize(),80);
+    }
+    viewLinks.forEach(link=>link.addEventListener('click',e=>{e.preventDefault();showView(link.dataset.viewLink)}));
+    document.querySelectorAll('[data-go-view]').forEach(btn=>btn.addEventListener('click',()=>showView(btn.dataset.goView)));
+    document.querySelectorAll('.brand').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();showView('home')}));
+    const initialHash={ '#explora':'explore','#vivienda':'housing','#migracion':'admin','#contacto':'support'}[location.hash]||'home';
+
     const cards=[...document.querySelectorAll('.card')], filters=[...document.querySelectorAll('.filter')];
     const selectedCategories=new Set(),selectedCards=new Set(),selectedLivingAreas=new Set();
     const searchInput=document.getElementById('searchInput'), empty=document.getElementById('emptyState');
     const map=L.map('guideMap',{scrollWheelZoom:false}).setView([59.3293,18.0686],12);
+    showView(initialHash,{updateHash:false});
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
     const storeLocations={
       ICA:[['ICA near Lappis',59.3728,18.0642],['ICA Maxi Solna',59.3597,17.9822],['ICA Kvantum Södermalm',59.3115,18.0619],['ICA Farsta',59.2434,18.0904],['ICA near Flemingsberg',59.2197,17.9449]],
@@ -272,8 +319,8 @@
     function updateFilterButtons(){filters.forEach(btn=>btn.classList.toggle('active',btn.dataset.filter==='all'?selectedCategories.size===0:selectedCategories.has(btn.dataset.filter)))}
     function applyFilters(){const q=searchInput.value.trim().toLowerCase();const hasSelections=selectedCards.size>0||selectedLivingAreas.size>0;let count=0;const visible=[];cards.forEach(card=>{const okCategory=selectedCategories.size===0||selectedCategories.has(card.dataset.category);const okSearch=!q||card.dataset.search.includes(q)||card.textContent.toLowerCase().includes(q);const show=okCategory&&okSearch&&!selectedCategories.has('vivienda')||okCategory&&okSearch&&selectedCategories.size>1;card.style.display=show?'flex':'none';card.classList.toggle('map-selected',selectedCards.has(card));card.setAttribute('aria-pressed',String(selectedCards.has(card)));if(show)count++});mapItems.forEach(({card,markers})=>{const categoryVisible=selectedCategories.size===0||selectedCategories.has(card.dataset.category);const searchVisible=!q||card.dataset.search.includes(q)||card.textContent.toLowerCase().includes(q);const show=hasSelections?selectedCards.has(card):categoryVisible&&searchVisible;markers.forEach(marker=>{if(show){visible.push(marker.getLatLng());if(!map.hasLayer(marker))marker.addTo(map)}else if(map.hasLayer(marker))map.removeLayer(marker)})});livingItems.forEach(({key,search,marker})=>{const categoryVisible=selectedCategories.size===0||selectedCategories.has('vivienda');const searchVisible=!q||search.includes(q);const show=hasSelections?selectedLivingAreas.has(key):categoryVisible&&searchVisible;if(show){visible.push(marker.getLatLng());if(!map.hasLayer(marker))marker.addTo(map)}else if(map.hasLayer(marker))map.removeLayer(marker)});document.querySelectorAll('.district').forEach(btn=>{const selected=selectedLivingAreas.has(btn.dataset.key);btn.classList.toggle('active',selected);btn.setAttribute('aria-pressed',String(selected))});empty.style.display=selectedCategories.size===1&&selectedCategories.has('vivienda')||count?'none':'block';updateFilterButtons();if(visible.length===1)map.setView(visible[0],14);else if(visible.length>1)map.fitBounds(L.latLngBounds(visible).pad(.14),{maxZoom:14})}
     mapItems.forEach(({card})=>{card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-label',`Add or remove ${card.querySelector('h3').textContent} from the map selection`);const select=()=>{selectedCards.has(card)?selectedCards.delete(card):selectedCards.add(card);applyFilters()};card.addEventListener('click',event=>{if(event.target.closest('a'))return;select()});card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select()}})});
-    filters.forEach(btn=>btn.addEventListener('click',()=>{const category=btn.dataset.filter;if(category==='all'){selectedCategories.clear();selectedCards.clear();selectedLivingAreas.clear();searchInput.value=''}else{selectedCategories.has(category)?selectedCategories.delete(category):selectedCategories.add(category)}applyFilters();if(category==='vivienda'&&selectedCategories.has('vivienda'))document.getElementById('vivienda').scrollIntoView({behavior:'smooth',block:'start'})}));
-    searchInput.addEventListener('input',applyFilters);document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault();applyFilters();document.getElementById('explora').scrollIntoView()});
+    filters.forEach(btn=>btn.addEventListener('click',()=>{const category=btn.dataset.filter;if(category==='all'){selectedCategories.clear();selectedCards.clear();selectedLivingAreas.clear();searchInput.value=''}else{selectedCategories.has(category)?selectedCategories.delete(category):selectedCategories.add(category)}applyFilters();if(category==='vivienda'&&selectedCategories.has('vivienda'))showView('housing')}));
+    searchInput.addEventListener('input',applyFilters);document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault();applyFilters();showView('explore')});
     applyFilters();
     loadAllGroceryStores();
     const districts={
