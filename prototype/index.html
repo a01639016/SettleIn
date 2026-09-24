@@ -12,6 +12,7 @@
     function gtag(){dataLayer.push(arguments)}
     gtag('js', new Date());
     gtag('config', 'G-R052RTC355');
+
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,6 +123,9 @@
     .pilot-status small{display:block;color:var(--muted);margin-top:4px}
     .reset-progress{border:1px solid var(--line);background:var(--paper);padding:9px 12px;border-radius:3px;font-weight:750;color:var(--green);cursor:pointer}
     .home-tile.completed{box-shadow:inset 0 0 0 2px var(--coral)}
+
+    /* Housing marketplace */
+    .housing-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;padding:18px 0 34px}.housing-hero h2{font-family:var(--display);font-weight:400;color:var(--green);font-size:clamp(38px,5.5vw,70px);line-height:1.02;margin:10px 0 0}.housing-hero h2 em{font-style:normal;color:var(--coral)}.housing-hero>p{color:var(--muted);font-size:20px;margin:0 0 8px}.housing-stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin:8px 0 28px}.housing-stats div{padding:24px;border-right:1px solid var(--line)}.housing-stats div:last-child{border-right:0}.housing-stats strong{display:block;font-family:var(--display);font-weight:400;color:var(--green);font-size:24px}.housing-stats span{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}.housing-actions{display:flex;gap:12px;margin-bottom:20px}.housing-primary,.housing-secondary{padding:12px 18px;border-radius:3px;font-weight:800;cursor:pointer}.housing-primary{border:0;background:var(--coral);color:white}.housing-secondary{border:1px solid var(--line);background:var(--paper);color:var(--green)}.housing-filter-panel{display:none;grid-template-columns:repeat(4,1fr);gap:12px;background:var(--cream);border:1px solid var(--line);padding:20px;margin-bottom:34px}.housing-filter-panel.open{display:grid}.housing-filter-panel label{display:block;font-weight:800;color:var(--green);font-size:13px;margin-bottom:5px}.housing-filter-panel select{width:100%;padding:10px;border:1px solid var(--line);background:var(--paper)}.housing-check{align-self:end;padding:10px}.housing-list-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin:44px 0 20px}.housing-list-head h2{font-family:var(--display);font-weight:400;color:var(--green);font-size:clamp(28px,4vw,44px);margin:5px 0}.housing-list-head p{color:var(--muted);margin:0}.housing-list-head>strong{color:var(--coral);white-space:nowrap}.housing-inventory{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.housing-card{border:1px solid var(--line);background:var(--paper);padding:24px;min-height:235px;display:flex;flex-direction:column;transition:.2s}.housing-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.housing-card-top{display:flex;justify-content:space-between;gap:20px}.housing-card h3{font-family:var(--display);font-size:15px;font-weight:400;color:var(--green);margin:0 0 5px}.housing-location{color:var(--muted);font-size:14px}.housing-price{text-align:right;color:var(--green);font-weight:900;font-size:21px;white-space:nowrap}.housing-price small{display:block;color:var(--muted);font-weight:500;font-size:13px}.housing-meta{display:flex;flex-wrap:wrap;gap:15px;margin:24px 0 12px;color:var(--muted);font-size:14px}.housing-chips{display:flex;flex-wrap:wrap;gap:7px}.housing-chips span{background:var(--cream);padding:5px 9px;border-radius:3px;font-size:13px}.verified{align-self:flex-start;margin-top:auto;padding:6px 9px;background:rgba(22,132,119,.12);color:var(--coral);font-weight:800;font-size:13px}.housing-empty{display:none;text-align:center;color:var(--muted);padding:35px}.housing-card.match{box-shadow:inset 0 0 0 2px var(--coral)}@media(max-width:800px){.housing-hero{grid-template-columns:1fr}.housing-stats{grid-template-columns:repeat(2,1fr)}.housing-stats div:nth-child(2){border-right:0}.housing-filter-panel{grid-template-columns:1fr 1fr}.housing-inventory{grid-template-columns:1fr}.housing-list-head{display:block}.housing-list-head>strong{display:block;margin-top:12px}}@media(max-width:520px){.housing-stats,.housing-filter-panel{grid-template-columns:1fr}.housing-stats div{border-right:0;border-bottom:1px solid var(--line)}.housing-actions{flex-direction:column}}
   </style>
 </head>
 <body>
@@ -215,17 +219,22 @@
 
       <div class="app-view view-shell" data-view="housing">
       <section class="housing" id="vivienda">
-        <div class="section-head"><div><span class="kicker">Where to live</span><h2>Areas that work<br>for students.</h2></div><p>Choose an area to see its profile and where to begin your search. In Stockholm, a good metro connection is often more valuable than living in the centre.</p></div>
-        <div class="districts">
-          <div class="district-list" id="districtList">
-            <button class="district" data-key="lappis"><div class="district-row"><div><h3>Lappkärrsberget (Lappis)</h3><small>Student atmosphere · close to SU</small></div><span>→</span></div></button>
-            <button class="district" data-key="solna"><div class="district-row"><div><h3>Solna</h3><small>Convenient · north of the city</small></div><span>→</span></div></button>
-            <button class="district" data-key="soder"><div class="district-row"><div><h3>Södermalm</h3><small>Urban life · more expensive</small></div><span>→</span></div></button>
-            <button class="district" data-key="farsta"><div class="district-row"><div><h3>Farsta / Skarpnäck</h3><small>More space · reasonable commute</small></div><span>→</span></div></button>
-            <button class="district" data-key="fleming"><div class="district-row"><div><h3>Flemingsberg</h3><small>University area · commuter rail</small></div><span>→</span></div></button>
-          </div>
-          <aside class="district-detail" id="districtDetail" aria-live="polite"></aside>
+        <div class="housing-hero">
+          <div><span class="kicker">Housing search · Stockholm</span><h2>One search.<br><em>Every partner.</em></h2></div>
+          <p>Set your housing preferences once and use them to narrow the pooled prototype inventory from student-housing providers across Stockholm.</p>
         </div>
+        <div class="housing-stats"><div><strong id="poolCount">10</strong><span>Homes in this prototype</span></div><div><strong>5</strong><span>Provider labels represented</span></div><div><strong id="areaCount">8</strong><span>Neighbourhoods</span></div><div><strong id="avgRent">SEK 5,799</strong><span>Avg. rent / month</span></div></div>
+        <div class="housing-actions"><button class="housing-primary" id="toggleHousingFilters" type="button">☷ &nbsp; Set my housing filters</button><button class="housing-secondary" id="showMatches" type="button">See my matches</button></div>
+        <div class="housing-filter-panel" id="housingFilterPanel">
+          <div><label for="maxRent">Max monthly rent</label><select id="maxRent"><option value="99999">Any budget</option><option value="5000">Up to SEK 5,000</option><option value="6000">Up to SEK 6,000</option><option value="6500">Up to SEK 6,500</option><option value="7000">Up to SEK 7,000</option></select></div>
+          <div><label for="housingType">Housing type</label><select id="housingType"><option value="all">Any type</option><option value="Corridor room">Corridor room</option><option value="Room in shared flat">Room in shared flat</option><option value="Studio">Studio</option></select></div>
+          <div><label for="housingArea">Area</label><select id="housingArea"><option value="all">Any area</option><option>Farsta</option><option>Lappkärrsberget</option><option>Frescati</option><option>Vasastan</option><option>Bergshamra</option><option>Solna</option><option>Rinkeby</option><option>Östermalm</option><option>Kungshamra</option><option>Årsta</option></select></div>
+          <label class="housing-check"><input id="furnishedOnly" type="checkbox"> Furnished only</label>
+        </div>
+        <div class="housing-list-head"><div><span class="kicker">Housing inventory</span><h2>Live from our partners</h2><p>Prototype listings based on the Housing examples shared for the SettleIn pilot. Use the filters to narrow the cards.</p></div><strong id="rentFrom">From SEK 4,600 / month</strong></div>
+        <div class="housing-inventory" id="housingInventory"></div>
+        <div class="housing-empty" id="housingEmpty">No homes match those filters. Try widening your search.</div>
+        <p class="source-note"><strong>Prototype data:</strong> these cards reproduce the housing examples from the Lovable pilot screenshots you shared. They are not a live housing feed, and availability/prices should be verified with the named provider.</p>
       </section>
       </div>
 
@@ -415,6 +424,25 @@
       submitInterest.disabled=true;submitInterest.textContent='Sending…';formStatus.className='form-status';
       try{const response=await fetch(interestForm.action,{method:'POST',body:new FormData(interestForm),headers:{Accept:'application/json'}});if(!response.ok)throw new Error('Submission failed');gtag('event','generate_lead',{form_name:'SettleIn student interest',willingness_to_pay:document.getElementById('willingnessToPay').value,discovery_source:document.getElementById('discoverySource').value});interestForm.reset();formStatus.textContent='Thank you! Your registration was sent successfully.';formStatus.className='form-status show success'}catch(error){formStatus.textContent='We could not send your registration. Please try again.';formStatus.className='form-status show error'}finally{submitInterest.disabled=false;submitInterest.textContent='Register my interest'}
     });
+
+    const housingData=[
+      {name:'Corridor room in Farsta',area:'Farsta',price:4600,type:'Corridor room',size:14,commute:34,furnished:true,features:['Shared kitchen','Laundry','Internet included'],provider:'Bostadsförmedlingen'},
+      {name:'Corridor room at Lappkärrsberget',area:'Lappkärrsberget',price:4790,type:'Corridor room',size:17,commute:12,furnished:true,features:['Laundry','Shared kitchen','Internet included','Bike room'],provider:'SSSB'},
+      {name:'Room at Idun student house',area:'Frescati',price:4950,type:'Corridor room',size:16,commute:8,furnished:true,features:['Shared kitchen','Laundry','Internet included','Bike room'],provider:'Stockholm University Housing'},
+      {name:'Corridor room at Strix',area:'Vasastan',price:5100,type:'Corridor room',size:15,commute:10,furnished:true,features:['Laundry','Shared kitchen','Internet included'],provider:'SSSB'},
+      {name:'Shared two-room flat in Bergshamra',area:'Bergshamra',price:5400,type:'Room in shared flat',size:21,commute:14,furnished:true,features:['Shared kitchen','Laundry','Internet included','Balcony'],provider:'Stockholm University Housing'},
+      {name:'Shared apartment room in Solna',area:'Solna',price:5600,type:'Room in shared flat',size:19,commute:16,furnished:true,features:['Laundry','Shared kitchen','Internet included','Gym in building'],provider:'Bostadsförmedlingen'},
+      {name:'Studio in Rinkeby',area:'Rinkeby',price:5900,type:'Studio',size:27,commute:32,furnished:false,features:['Laundry','Private kitchen','Private bathroom'],provider:'Stockholmshem'},
+      {name:'Furnished room at KTH Campus',area:'Östermalm',price:6200,type:'Corridor room',size:18,commute:5,furnished:true,features:['Shared kitchen','Laundry','Internet included','Study room'],provider:'KTH Accommodation'},
+      {name:'Studio at Kungshamra',area:'Kungshamra',price:6450,type:'Studio',size:24,commute:18,furnished:true,features:['Laundry','Private kitchen','Private bathroom','Internet included'],provider:'SSSB'},
+      {name:'Studio in Årsta',area:'Årsta',price:6900,type:'Studio',size:28,commute:22,furnished:false,features:['Laundry','Private kitchen','Private bathroom'],provider:'Stockholmshem'}
+    ];
+    const housingInventory=document.getElementById('housingInventory');
+    function renderHousing(highlight=false){const max=Number(document.getElementById('maxRent').value),type=document.getElementById('housingType').value,area=document.getElementById('housingArea').value,furnished=document.getElementById('furnishedOnly').checked;const filtered=housingData.filter(x=>x.price<=max&&(type==='all'||x.type===type)&&(area==='all'||x.area===area)&&(!furnished||x.furnished));housingInventory.innerHTML=filtered.map(x=>`<article class="housing-card ${highlight?'match':''}"><div class="housing-card-top"><div><h3>${x.name}</h3><span class="housing-location">⌖ ${x.area}</span></div><div class="housing-price">SEK ${x.price.toLocaleString('sv-SE')}<small>per month</small></div></div><div class="housing-meta"><span>▱ ${x.type}</span><span>⌁ ${x.size} m²</span><span>◷ ${x.commute} min to campus</span><span>${x.furnished?'Furnished':'Unfurnished'}</span></div><div class="housing-chips">${x.features.map(f=>`<span>${f}</span>`).join('')}</div><div class="verified">✓ Verified by ${x.provider}</div></article>`).join('');document.getElementById('housingEmpty').style.display=filtered.length?'none':'block';document.getElementById('poolCount').textContent=filtered.length;document.getElementById('areaCount').textContent=new Set(filtered.map(x=>x.area)).size;document.getElementById('avgRent').textContent=filtered.length?'SEK '+Math.round(filtered.reduce((a,b)=>a+b.price,0)/filtered.length).toLocaleString('sv-SE'):'—';document.getElementById('rentFrom').textContent=filtered.length?'From SEK '+Math.min(...filtered.map(x=>x.price)).toLocaleString('sv-SE')+' / month':'No current matches'}
+    document.getElementById('toggleHousingFilters').addEventListener('click',()=>document.getElementById('housingFilterPanel').classList.toggle('open'));
+    ['maxRent','housingType','housingArea','furnishedOnly'].forEach(id=>document.getElementById(id).addEventListener('change',()=>renderHousing(false)));
+    document.getElementById('showMatches').addEventListener('click',()=>{renderHousing(true);document.getElementById('housingInventory').scrollIntoView({behavior:'smooth',block:'start'})});
+    renderHousing();
   </script>
 </body>
 </html>
