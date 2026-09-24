@@ -107,13 +107,15 @@
     .app-view .migration,.app-view .housing,.app-view .contact-section{margin-top:0}
     @keyframes viewIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
     @media(max-width:800px){.home-grid{grid-template-columns:1fr}.home-tile{min-height:170px}.progress-card{grid-template-columns:1fr}.progress-number{justify-self:start}}
+
+    .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:22px 0 38px}.info-card{background:var(--paper);border:1px solid var(--line);padding:23px;border-radius:5px}.info-card h3{font-family:var(--display);font-size:15px;font-weight:400;color:var(--green);margin:12px 0 8px}.info-card p{color:var(--muted);font-size:15px;margin:0}.info-no{font-weight:850;color:var(--coral);letter-spacing:.12em}.checklist-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}.checklist-item{background:var(--paper);border:1px solid var(--line);padding:20px;display:grid;grid-template-columns:38px 1fr;gap:14px}.checklist-item .num{width:34px;height:34px;display:grid;place-items:center;background:var(--mint);color:var(--green);font-weight:900}.checklist-item h3{font-family:var(--display);font-size:14px;color:var(--green);font-weight:400;margin:2px 0 6px}.checklist-item p{font-size:14px;color:var(--muted);margin:0}.safety-banner{background:var(--green);color:white;padding:34px;border-radius:5px 70px 5px 5px;margin-bottom:24px}.safety-banner h2{font-family:var(--display);font-weight:400;font-size:clamp(27px,4vw,44px);margin:5px 0 10px}.safety-banner p{color:var(--mint);max-width:720px}.source-note{font-size:13px;color:var(--muted);border-left:3px solid var(--lime);padding-left:12px;margin:20px 0}.home-grid.secondary{grid-template-columns:repeat(2,1fr);margin-top:-28px}@media(max-width:800px){.info-grid,.checklist-grid,.home-grid.secondary{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <header class="topbar">
     <nav class="shell" aria-label="Main navigation">
       <a class="brand" href="#inicio" aria-label="SettleIn home"><img class="brand-logo" src="SettleIn Logo.png" alt="SettleIn"></a>
-      <div class="navlinks"><a href="#inicio" data-view-link="home">Home</a><a href="#explora" data-view-link="explore">Explore</a><a href="#vivienda" data-view-link="housing">Housing</a><a href="#migracion" data-view-link="admin">Admin</a><a href="#contacto" data-view-link="support">Support</a></div>
+      <div class="navlinks"><a href="#inicio" data-view-link="home">Home</a><a href="#explora" data-view-link="explore">Explore</a><a href="#vivienda" data-view-link="housing">Housing</a><a href="#migracion" data-view-link="admin">Admin</a><a href="#culture" data-view-link="culture">Culture</a><a href="#safety" data-view-link="safety">Safety</a><a href="#contacto" data-view-link="support">Support</a></div>
     </nav>
   </header>
 
@@ -143,7 +145,7 @@
         <button class="home-tile" data-go-view="admin"><span class="tile-icon">✓</span><h3>Get your admin sorted</h3><p>Start with the immigration pathway that applies to your situation.</p><b>→</b></button>
         <button class="home-tile" data-go-view="explore"><span class="tile-icon">⌖</span><h3>Explore Stockholm</h3><p>Universities, groceries, transport and local life on one interactive map.</p><b>→</b></button>
       </div>
-      <div class="progress-card"><div><h3>Your Stockholm setup</h3><p>Prototype preview of how SettleIn can guide your relocation step by step.</p><div class="progress-track"><div class="progress-fill"></div></div></div><div class="progress-number">64%</div></div>
+      <div class="home-grid secondary"><button class="home-tile" data-go-view="culture"><span class="tile-icon">☕</span><h3>Understand the culture</h3><p>Fika, student life, social codes and everyday Swedish habits.</p><b>→</b></button><button class="home-tile" data-go-view="safety"><span class="tile-icon">🛡️</span><h3>Avoid housing scams</h3><p>Five practical checks before you pay, sign or share information.</p><b>→</b></button></div><div class="progress-card"><div><h3>Your Stockholm setup</h3><p>Prototype preview of how SettleIn can guide your relocation step by step.</p><div class="progress-track"><div class="progress-fill"></div></div></div><div class="progress-number">64%</div></div>
       </section>
       <div class="app-view view-shell" data-view="explore">
       <section id="explora">
@@ -224,6 +226,40 @@
         </div>
         <div class="callout"><strong>2026 figure:</strong> for study-permit applications submitted in 2026, Migrationsverket states a maintenance requirement of at least <strong>SEK 10,656 per month</strong>. The amount and rules may change, so check them before applying.</div>
       </section>
+      <section>
+        <div class="view-title"><span class="kicker">After arrival</span><h2>Your practical admin checklist.</h2><p>A prototype checklist based on the SettleIn pilot: the key tasks students commonly need to work through after arriving in Sweden.</p></div>
+        <div class="checklist-grid">
+          <article class="checklist-item"><span class="num">1</span><div><h3>Register and check personnummer eligibility</h3><p>Start with Skatteverket and confirm whether your planned length of stay makes you eligible.</p></div></article>
+          <article class="checklist-item"><span class="num">2</span><div><h3>Open a Swedish bank account</h3><p>Compare student account requirements and what identification your chosen bank accepts.</p></div></article>
+          <article class="checklist-item"><span class="num">3</span><div><h3>Activate BankID and Swish</h3><p>Once your bank setup allows it, these services unlock many everyday digital interactions.</p></div></article>
+          <article class="checklist-item"><span class="num">4</span><div><h3>Understand tax and student work</h3><p>Check Skatteverket guidance before working alongside your studies.</p></div></article>
+          <article class="checklist-item"><span class="num">5</span><div><h3>Set up healthcare</h3><p>Know your insurance coverage and how to choose or contact a local vårdcentral.</p></div></article>
+          <article class="checklist-item"><span class="num">6</span><div><h3>Get connected and moving</h3><p>Arrange a Swedish SIM if useful and choose the appropriate SL transport ticket for your situation.</p></div></article>
+        </div><p class="source-note">Pilot content adapted from the SettleIn Lovable prototype. Always verify requirements, eligibility, fees and processing times with the responsible authority or provider.</p>
+      </section>
+      </div>
+
+      <div class="app-view view-shell" data-view="culture" id="culture">
+        <div class="view-title"><span class="kicker">Cultural integration</span><h2>Fitting into Stockholm, not just living in it.</h2><p>Practical context for the social habits and everyday norms that can make the first months easier to understand.</p></div>
+        <div class="info-grid">
+          <article class="info-card"><span class="info-no">01</span><h3>Fika is social time</h3><p>Coffee breaks are often a real opportunity to connect with classmates and colleagues, not simply a coffee run.</p></article>
+          <article class="info-card"><span class="info-no">02</span><h3>Quiet can be politeness</h3><p>Reserved public behaviour can feel unfamiliar at first. Give new relationships time to develop.</p></article>
+          <article class="info-card"><span class="info-no">03</span><h3>Student unions matter</h3><p>University unions, associations and student houses can be useful places to find events, activities and community.</p></article>
+          <article class="info-card"><span class="info-no">04</span><h3>Prepare for the dark season</h3><p>Winter daylight changes significantly. Build routines around activity, social plans and time outdoors.</p></article>
+          <article class="info-card"><span class="info-no">05</span><h3>English vs. Swedish</h3><p>English works in many student settings, while learning basic Swedish can make daily interactions and integration easier.</p></article>
+          <article class="info-card"><span class="info-no">06</span><h3>Everyday unwritten rules</h3><p>Small norms around queues, shared spaces, punctuality and paying separately are useful to learn early.</p></article>
+        </div><p class="source-note">Themes adapted from the cultural guidance in the SettleIn Lovable pilot.</p>
+      </div>
+
+      <div class="app-view view-shell" data-view="safety" id="safety">
+        <div class="safety-banner"><span class="kicker">Housing safety</span><h2>Spot the red flags before you pay.</h2><p>International students can be targeted by fake listings and deposit fraud. Use these checks when evaluating housing outside verified providers.</p></div>
+        <div class="info-grid">
+          <article class="info-card"><span class="info-no">01</span><h3>Contract before deposit</h3><p>Be cautious if someone asks you to send money simply to reserve or hold a room before there is a legitimate agreement.</p></article>
+          <article class="info-card"><span class="info-no">02</span><h3>Keep the process traceable</h3><p>Be wary when a supposed provider pushes you away from its normal communication or viewing process, especially for payment.</p></article>
+          <article class="info-card"><span class="info-no">03</span><h3>Compare the rent</h3><p>An unusually cheap central apartment deserves extra verification. Compare similar housing before committing.</p></article>
+          <article class="info-card"><span class="info-no">04</span><h3>Protect BankID</h3><p>Do not use BankID merely because an unknown landlord says it is needed to prove your identity.</p></article>
+          <article class="info-card"><span class="info-no">05</span><h3>Verify the provider</h3><p>Check who owns or manages the listing, use official contact details and confirm the source independently.</p></article>
+        </div><p class="source-note">Safety guidance adapted from the SettleIn Lovable pilot. The prototype does not guarantee third-party listings.</p>
       </div>
 
       <div class="app-view view-shell" data-view="support">
