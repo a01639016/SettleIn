@@ -109,6 +109,19 @@
     @media(max-width:800px){.home-grid{grid-template-columns:1fr}.home-tile{min-height:170px}.progress-card{grid-template-columns:1fr}.progress-number{justify-self:start}}
 
     .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:22px 0 38px}.info-card{background:var(--paper);border:1px solid var(--line);padding:23px;border-radius:5px}.info-card h3{font-family:var(--display);font-size:15px;font-weight:400;color:var(--green);margin:12px 0 8px}.info-card p{color:var(--muted);font-size:15px;margin:0}.info-no{font-weight:850;color:var(--coral);letter-spacing:.12em}.checklist-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}.checklist-item{background:var(--paper);border:1px solid var(--line);padding:20px;display:grid;grid-template-columns:38px 1fr;gap:14px}.checklist-item .num{width:34px;height:34px;display:grid;place-items:center;background:var(--mint);color:var(--green);font-weight:900}.checklist-item h3{font-family:var(--display);font-size:14px;color:var(--green);font-weight:400;margin:2px 0 6px}.checklist-item p{font-size:14px;color:var(--muted);margin:0}.safety-banner{background:var(--green);color:white;padding:34px;border-radius:5px 70px 5px 5px;margin-bottom:24px}.safety-banner h2{font-family:var(--display);font-weight:400;font-size:clamp(27px,4vw,44px);margin:5px 0 10px}.safety-banner p{color:var(--mint);max-width:720px}.source-note{font-size:13px;color:var(--muted);border-left:3px solid var(--lime);padding-left:12px;margin:20px 0}.home-grid.secondary{grid-template-columns:repeat(2,1fr);margin-top:-28px}@media(max-width:800px){.info-grid,.checklist-grid,.home-grid.secondary{grid-template-columns:1fr}}
+
+    /* Functional pilot interactions */
+    .checklist-item{cursor:pointer;transition:.2s ease;position:relative}
+    .checklist-item.done{background:rgba(185,221,213,.48);border-color:var(--coral)}
+    .task-check{width:26px;height:26px;flex:none;border:2px solid var(--coral);border-radius:50%;display:grid;place-items:center;margin-top:2px;font-weight:900;color:white;background:transparent}
+    .checklist-item.done .task-check{background:var(--coral)}
+    .checklist-item.done .task-check:after{content:"✓"}
+    .checklist-item.done h3{text-decoration:line-through;text-decoration-thickness:1px;opacity:.72}
+    .pilot-status{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;background:var(--cream);border:1px solid var(--line);padding:22px 24px;margin:0 0 28px;border-radius:5px}
+    .pilot-status strong{font-family:var(--display);font-weight:400;color:var(--green)}
+    .pilot-status small{display:block;color:var(--muted);margin-top:4px}
+    .reset-progress{border:1px solid var(--line);background:var(--paper);padding:9px 12px;border-radius:3px;font-weight:750;color:var(--green);cursor:pointer}
+    .home-tile.completed{box-shadow:inset 0 0 0 2px var(--coral)}
   </style>
 </head>
 <body>
@@ -145,7 +158,7 @@
         <button class="home-tile" data-go-view="admin"><span class="tile-icon">✓</span><h3>Get your admin sorted</h3><p>Start with the immigration pathway that applies to your situation.</p><b>→</b></button>
         <button class="home-tile" data-go-view="explore"><span class="tile-icon">⌖</span><h3>Explore Stockholm</h3><p>Universities, groceries, transport and local life on one interactive map.</p><b>→</b></button>
       </div>
-      <div class="home-grid secondary"><button class="home-tile" data-go-view="culture"><span class="tile-icon">☕</span><h3>Understand the culture</h3><p>Fika, student life, social codes and everyday Swedish habits.</p><b>→</b></button><button class="home-tile" data-go-view="safety"><span class="tile-icon">🛡️</span><h3>Avoid housing scams</h3><p>Five practical checks before you pay, sign or share information.</p><b>→</b></button></div><div class="progress-card"><div><h3>Your Stockholm setup</h3><p>Prototype preview of how SettleIn can guide your relocation step by step.</p><div class="progress-track"><div class="progress-fill"></div></div></div><div class="progress-number">64%</div></div>
+      <div class="home-grid secondary"><button class="home-tile" data-go-view="culture"><span class="tile-icon">☕</span><h3>Understand the culture</h3><p>Fika, student life, social codes and everyday Swedish habits.</p><b>→</b></button><button class="home-tile" data-go-view="safety"><span class="tile-icon">🛡️</span><h3>Avoid housing scams</h3><p>Five practical checks before you pay, sign or share information.</p><b>→</b></button></div><div class="progress-card"><div><h3>Your Stockholm setup</h3><p>Prototype preview of how SettleIn can guide your relocation step by step.</p><div class="progress-track"><div class="progress-fill" id="homeProgressFill"></div></div></div><div class="progress-number" id="homeProgressNumber">0%</div></div>
       </section>
       <div class="app-view view-shell" data-view="explore">
       <section id="explora">
@@ -228,13 +241,14 @@
       </section>
       <section>
         <div class="view-title"><span class="kicker">After arrival</span><h2>Your practical admin checklist.</h2><p>A prototype checklist based on the SettleIn pilot: the key tasks students commonly need to work through after arriving in Sweden.</p></div>
+        <div class="pilot-status"><div><strong id="adminProgressLabel">0 of 6 admin tasks completed</strong><small>Your progress is saved on this device.</small></div><button class="reset-progress" id="resetProgress" type="button">Reset</button></div>
         <div class="checklist-grid">
-          <article class="checklist-item"><span class="num">1</span><div><h3>Register and check personnummer eligibility</h3><p>Start with Skatteverket and confirm whether your planned length of stay makes you eligible.</p></div></article>
-          <article class="checklist-item"><span class="num">2</span><div><h3>Open a Swedish bank account</h3><p>Compare student account requirements and what identification your chosen bank accepts.</p></div></article>
-          <article class="checklist-item"><span class="num">3</span><div><h3>Activate BankID and Swish</h3><p>Once your bank setup allows it, these services unlock many everyday digital interactions.</p></div></article>
-          <article class="checklist-item"><span class="num">4</span><div><h3>Understand tax and student work</h3><p>Check Skatteverket guidance before working alongside your studies.</p></div></article>
-          <article class="checklist-item"><span class="num">5</span><div><h3>Set up healthcare</h3><p>Know your insurance coverage and how to choose or contact a local vårdcentral.</p></div></article>
-          <article class="checklist-item"><span class="num">6</span><div><h3>Get connected and moving</h3><p>Arrange a Swedish SIM if useful and choose the appropriate SL transport ticket for your situation.</p></div></article>
+          <article class="checklist-item" data-task="admin-1" role="checkbox" aria-checked="false" tabindex="0"><span class="task-check" aria-hidden="true"></span><div><h3>Register and check personnummer eligibility</h3><p>Start with Skatteverket and confirm whether your planned length of stay makes you eligible.</p></div></article>
+          <article class="checklist-item" data-task="admin-2" role="checkbox" aria-checked="false" tabindex="0"><span class="task-check" aria-hidden="true"></span><div><h3>Open a Swedish bank account</h3><p>Compare student account requirements and what identification your chosen bank accepts.</p></div></article>
+          <article class="checklist-item" data-task="admin-3" role="checkbox" aria-checked="false" tabindex="0"><span class="task-check" aria-hidden="true"></span><div><h3>Activate BankID and Swish</h3><p>Once your bank setup allows it, these services unlock many everyday digital interactions.</p></div></article>
+          <article class="checklist-item" data-task="admin-4" role="checkbox" aria-checked="false" tabindex="0"><span class="task-check" aria-hidden="true"></span><div><h3>Understand tax and student work</h3><p>Check Skatteverket guidance before working alongside your studies.</p></div></article>
+          <article class="checklist-item" data-task="admin-5" role="checkbox" aria-checked="false" tabindex="0"><span class="task-check" aria-hidden="true"></span><div><h3>Set up healthcare</h3><p>Know your insurance coverage and how to choose or contact a local vårdcentral.</p></div></article>
+          <article class="checklist-item" data-task="admin-6" role="checkbox" aria-checked="false" tabindex="0"><span class="task-check" aria-hidden="true"></span><div><h3>Get connected and moving</h3><p>Arrange a Swedish SIM if useful and choose the appropriate SL transport ticket for your situation.</p></div></article>
         </div><p class="source-note">Pilot content adapted from the SettleIn Lovable prototype. Always verify requirements, eligibility, fees and processing times with the responsible authority or provider.</p>
       </section>
       </div>
@@ -324,6 +338,8 @@
     }
     viewLinks.forEach(link=>link.addEventListener('click',e=>{e.preventDefault();showView(link.dataset.viewLink)}));
     document.querySelectorAll('[data-go-view]').forEach(btn=>btn.addEventListener('click',()=>showView(btn.dataset.goView)));
+    const initialView=location.hash.replace('#',''); if(initialView)showView(initialView,false);
+    window.addEventListener('hashchange',()=>showView(location.hash.replace('#','')||'home',false));
     document.querySelectorAll('.brand').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();showView('home')}));
     const initialHash={ '#explora':'explore','#vivienda':'housing','#migracion':'admin','#contacto':'support'}[location.hash]||'home';
 
@@ -367,6 +383,23 @@
       fleming:{emoji:'🔬',name:'Flemingsberg',copy:'A university hub south of Stockholm with commuter-rail access and several student-housing developments.',chips:['Commuter rail','Close to campus','Student housing'],agency:'ByggVesta · Blick student housing',url:'https://byggvesta.se/en/vara-projekt/projektlista/blick-studios/'}}
     function showDistrict(key){const d=districts[key];document.getElementById('districtDetail').innerHTML=`<div class="big">${d.emoji}</div><h3>${d.name}</h3><p>${d.copy}</p><div class="detail-chips">${d.chips.map(x=>`<span>${x}</span>`).join('')}</div><div class="agency"><small>Start with</small><a href="${d.url}" target="_blank" rel="noopener">${d.agency} ↗</a></div>`}
     document.querySelectorAll('.district').forEach(btn=>{btn.setAttribute('aria-pressed','false');btn.addEventListener('click',()=>{const key=btn.dataset.key;selectedLivingAreas.has(key)?selectedLivingAreas.delete(key):selectedLivingAreas.add(key);selectedCategories.add('vivienda');showDistrict(key);applyFilters()})});showDistrict('lappis');
+    // Functional admin checklist + persistent progress
+    const taskCards=[...document.querySelectorAll('[data-task]')];
+    const progressKey='settlein-admin-progress-v1';
+    let completedTasks=new Set(JSON.parse(localStorage.getItem(progressKey)||'[]'));
+    function renderProgress(){
+      taskCards.forEach(card=>{const done=completedTasks.has(card.dataset.task);card.classList.toggle('done',done);card.setAttribute('aria-checked',String(done))});
+      const done=completedTasks.size,total=taskCards.length,pct=total?Math.round(done/total*100):0;
+      const label=document.getElementById('adminProgressLabel'); if(label)label.textContent=`${done} of ${total} admin tasks completed`;
+      const num=document.getElementById('homeProgressNumber'); if(num)num.textContent=`${pct}%`;
+      const fill=document.getElementById('homeProgressFill'); if(fill)fill.style.width=`${pct}%`;
+      localStorage.setItem(progressKey,JSON.stringify([...completedTasks]));
+    }
+    function toggleTask(card){const id=card.dataset.task;completedTasks.has(id)?completedTasks.delete(id):completedTasks.add(id);renderProgress()}
+    taskCards.forEach(card=>{card.addEventListener('click',()=>toggleTask(card));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleTask(card)}})});
+    document.getElementById('resetProgress')?.addEventListener('click',()=>{completedTasks.clear();renderProgress()});
+    renderProgress();
+
     const interestForm=document.getElementById('interestForm'),formStatus=document.getElementById('formStatus'),submitInterest=interestForm.querySelector('.submit-interest');
     const campaignParams=new URLSearchParams(window.location.search),trackingFields={utm_source:'utmSource',utm_medium:'utmMedium',utm_campaign:'utmCampaign',utm_content:'utmContent',utm_term:'utmTerm'};
     Object.entries(trackingFields).forEach(([parameter,id])=>{document.getElementById(id).value=campaignParams.get(parameter)||''});
